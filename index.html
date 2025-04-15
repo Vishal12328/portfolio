@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vishal Manikanta Dodda | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="offscreen-menu" id="offscreenMenu">
+        <div class="menu-content">
+            <ul>
+                <li><a href="#" data-section="skills-section">Skills</a></li>
+                <li><a href="#" data-section="volunteer-section">Experience</a></li>
+                <li><a href="#" data-section="interests-section">Interests</a></li>
+                <li><a href="#contact-section" data-section="contact-section">Contact Me</a></li>
+            </ul>
+            <div class="social-icons">
+                <a href="https://github.com/Vishal12328" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/vishal-manikanta-dodda-27a2aa289/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="page-container">
+        <nav>
+            <div class="logo">VD</div>
+            <div class="hamburger-menu" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+        
+        <main>
+            <div class="profile-container">
+                <div class="image-container">
+                    <img src="https://ibb.co/0yBV001j" alt="Profile Picture">
+                </div>
+                <div class="information">
+                    <h1 class="name">Vishal Manikanta Dodda</h1>
+                    <p class="title">Computer Science Student</p>
+                    <div class="tags">
+                        <span>Networking</span>
+                        <span>AI</span>
+                        <span>Innovation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <div class="tab-buttons">
+                    <button class="tab-button active" data-tab="AboutMe">About Me</button>
+                    <button class="tab-button" data-tab="Achievements">Achievements</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="AboutMe" class="tab-panel active">
+                        <p>
+                            I am a top-performing student who is always inclined toward Computer Science. 
+                            I am also curious about different aspects of science, which allows me to understand intricate details of human understanding. 
+                            I love to explore human nature and human philosophy. 
+                            My unwavering commitment to innovation, analytical acumen, and self-motivation fuels my continuous quest to push the boundaries of what's possible in Computer Science, specifically Networking.
+                        </p>
+                    </div>
+                    <div id="Achievements" class="tab-panel">
+                        <p>
+                            As a college student, I achieve milestones that contribute to my growth. 
+                            I maintain a strong GPA while actively participating in student organizations, which helps me build leadership and teamwork skills. 
+                            Completing group projects and delivering presentations strengthens my communication abilities. 
+                            I attend career fairs and networking events to prepare for future opportunities. 
+                            Balancing extra activities with my studies improves my time management. 
+                            Additionally, volunteering for campus events allows me to give back to the community while gaining valuable experience.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="education-section">
+                <h2>Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="date">2023 - Present</span>
+                            <h3>Vellore Engineering College</h3>
+                            <p>Bachelor of Technology in Computer Science</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="date">2021 - 2023</span>
+                            <h3>Narayana Group of Educations</h3>
+                            <p>Intermediate Education</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skills-section" id="skills-section">
+                <h2>Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Technical Skills</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">Python</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Competitive Coding</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Docker</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="60%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">JavaScript</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Web Development</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="50%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Soft Skills</h3>
+                        <div class="skill-item">
+                            <span class="skill-name">Communication</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Leadership</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Problem Solving</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <span class="skill-name">Team Collaboration</span>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-progress="90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="projects-section">
+                <h2>Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-info">
+                            <h3>GhostWire</h3>
+                            <p>A kernel-level application designed to anonymously detect applications that require specific system resources. Aiming to enhance device monitoring and troubleshooting by providing real-time insights into resource usage without compromising user privacy.</p>
+                            <div class="project-tags">
+                                <span>Kernel Development</span>
+                                <span>System Resources</span>
+                                <span>Privacy</span>
+                            </div>
+                            <a href="#" class="project-link">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="volunteer-section" id="volunteer-section">
+                <h2>Volunteer Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="date">10/2024 - 12/2024</span>
+                            <h3>Student Volunteer, graVITas</h3>
+                            <p>Demonstrated strong leadership and organizational skills by spearheading and actively coordinating college fests and events as part of student organizations.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="date">05/2024 - Present</span>
+                            <h3>Core committee Member, IEEE-CS</h3>
+                            <p>Organized and managed multiple events, including hackathons, as a key member of the organizing committee. Enabled me to gain a comprehensive understanding of team dynamics and the various roles within a collaborative work environment.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <span class="date">01/2025 - 02/2025</span>
+                            <h3>Student Coordinator, Riviera</h3>
+                            <p>Demonstrated strong leadership and organizational skills by spearheading and actively coordinating college fests and events as part of student organizations. Building on past experiences, I was able to make a more significant contribution to the team.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="interests-section" id="interests-section">
+                <h2>Interests & Activities</h2>
+                <div class="interests-content">
+                    <p>I am passionate about exploring new technologies and their applications in solving real-world problems.</p>
+                    <div class="interests-grid">
+                        <div class="interest-item">
+                            <i class="fas fa-robot"></i>
+                            <h3>AI & Machine Learning</h3>
+                            <p>Exploring artificial intelligence and its applications in solving complex problems.</p>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Network Security</h3>
+                            <p>Studying cybersecurity principles and network protection mechanisms.</p>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-code"></i>
+                            <h3>Web Development</h3>
+                            <p>Creating modern and responsive web applications using latest technologies.</p>
+                        </div>
+                        <div class="interest-item">
+                            <i class="fas fa-code-branch"></i>
+                            <h3>Open Source</h3>
+                            <p>Contributing to open source projects and collaborating with global developers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-section" id="contact-section">
+                <h2>Contact Me</h2>
+                <p class="contact-intro">Have a question or want to connect? Fill out the form below and I'll get back to you as soon as possible.</p>
+                
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your Email Address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Your Query" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+                
+                <div id="form-success" class="form-success hidden">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Message Sent!</h3>
+                    <p>Thank you for reaching out. I'll get back to you soon.</p>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 Vishal Manikanta Dodda.</p>
+        </footer>
+    </div>
+    
+    <div class="theme-toggle">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
