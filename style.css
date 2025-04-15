@@ -5,9 +5,6 @@
     --accent-color: #74b9ff;
     --dark-accent: #0984e3;
     --transition-speed: 0.3s;
-    --border-radius: 10px;
-    --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    --menu-width: 300px;
 }
 
 * {
@@ -25,7 +22,10 @@ body {
     position: relative;
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     font-family: 'EB Garamond', serif;
     font-weight: 500;
 }
@@ -122,14 +122,14 @@ nav {
 .offscreen-menu {
     background: linear-gradient(135deg, rgba(45, 52, 54, 0.9) 0%, rgba(10, 17, 25, 0.95) 100%);
     height: 100%;
-    width: var(--menu-width);
+    width: 300px;
     position: fixed;
     top: 0;
-    right: calc(-1 * var(--menu-width));
+    right: -300px;
     z-index: 105;
     transition: right var(--transition-speed) ease;
     backdrop-filter: blur(10px);
-    box-shadow: var(--box-shadow);
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
 }
 
 .offscreen-menu.active {
@@ -228,6 +228,7 @@ main {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -325,6 +326,7 @@ main {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -614,6 +616,7 @@ main {
     from {
         transform: scale(0);
     }
+
     to {
         transform: scale(1);
     }
@@ -643,46 +646,46 @@ footer {
         text-align: center;
         padding: 1rem;
     }
-    
+
     .image-container {
         width: 120px;
         height: 120px;
         margin: 0 auto;
     }
-    
+
     .information {
         margin-left: 0;
         margin-top: 1.5rem;
     }
-    
+
     .name {
         font-size: 2rem;
     }
-    
+
     .title {
         font-size: 1rem;
     }
-    
+
     .tags {
         justify-content: center;
         gap: 0.5rem;
     }
-    
+
     .content-section {
         padding: 1.5rem;
         margin: 1rem 0;
     }
-    
+
     .tab-buttons {
         flex-direction: column;
         gap: 0.5rem;
     }
-    
+
     .tab-button {
         width: 100%;
         padding: 0.6rem 1rem;
     }
-    
+
     .education-section,
     .skills-section,
     .projects-section,
@@ -692,41 +695,41 @@ footer {
         padding: 2rem 1rem;
         margin: 1rem 0;
     }
-    
+
     .timeline {
         padding-left: 1.5rem;
     }
-    
+
     .timeline-content {
         padding: 1rem;
     }
-    
+
     .interests-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
+
     .interest-item {
         padding: 1.5rem 1rem;
     }
-    
+
     .contact-form {
         padding: 0;
     }
-    
+
     .submit-btn {
         width: 100%;
     }
-    
+
     .theme-toggle {
         top: 1rem;
         right: 4rem;
     }
-    
+
     nav {
         padding: 1rem;
     }
-    
+
     .logo {
         font-size: 1.5rem;
     }
@@ -736,59 +739,59 @@ footer {
     main {
         padding: 1rem;
     }
-    
+
     h2 {
         font-size: 1.5rem;
     }
-    
+
     .skill-category {
         padding: 1rem;
     }
-    
+
     .skill-category h3 {
         font-size: 1.2rem;
     }
-    
+
     .project-card,
     .blog-card {
         margin: 0;
     }
-    
+
     .project-info,
     .blog-content {
         padding: 1rem;
     }
-    
+
     .project-tags span {
         padding: 0.2rem 0.5rem;
         font-size: 0.7rem;
     }
-    
-    .interests-content > p {
+
+    .interests-content>p {
         font-size: 1rem;
         margin-bottom: 2rem;
     }
-    
+
     .interest-item i {
         font-size: 2rem;
     }
-    
+
     .interest-item h3 {
         font-size: 1.1rem;
     }
-    
+
     .interest-item p {
         font-size: 0.9rem;
     }
-    
+
     .contact-intro {
         font-size: 0.9rem;
     }
-    
+
     .form-group label {
         font-size: 0.8rem;
     }
-    
+
     .form-group input,
     .form-group textarea {
         padding: 0.6rem 0.8rem;
@@ -802,31 +805,31 @@ footer {
         width: 100%;
         right: -100%;
     }
-    
+
     .offscreen-menu.active {
         right: 0;
     }
-    
+
     .page-container.menu-open {
         transform: translateX(-100%);
     }
-    
+
     .menu-content {
         padding: 4rem 2rem;
     }
-    
+
     .menu-content ul {
         margin-top: 2rem;
     }
-    
+
     .menu-content ul li {
         margin: 1rem 0;
     }
-    
+
     .menu-content a {
         font-size: 1.2rem;
     }
-    
+
     .social-icons {
         margin-top: 3rem;
     }
@@ -1215,12 +1218,13 @@ body.light-theme .theme-toggle .fa-moon {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
     .skills-grid,
     .projects-grid,
     .blog-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .project-card,
     .blog-card {
         margin: 0 auto;
@@ -1229,12 +1233,13 @@ body.light-theme .theme-toggle .fa-moon {
 }
 
 @media (max-width: 576px) {
+
     .skills-section,
     .projects-section,
     .blog-section {
         padding: 2rem 1rem;
     }
-    
+
     .project-tags span {
         font-size: 0.7rem;
     }
@@ -1425,7 +1430,7 @@ body.light-theme .volunteer-section {
     margin: 0 auto;
 }
 
-.interests-content > p {
+.interests-content>p {
     text-align: center;
     margin-bottom: 3rem;
     font-size: 1.1rem;
@@ -1498,11 +1503,11 @@ body.light-theme .interest-item:hover {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
     }
-    
+
     .interest-item {
         padding: 1.5rem;
     }
-    
+
     .interest-item i {
         font-size: 2rem;
     }
@@ -1559,235 +1564,7 @@ body.light-theme .interest-item:hover {
 
     .contact-form input,
     .contact-form textarea {
-        font-size: 16px; /* Prevent iOS zoom on focus */
-    }
-}
-
-/* Mobile Menu Optimizations */
-@media (max-width: 768px) {
-    .offscreen-menu {
-        width: 85%;
-        max-width: 300px;
-        right: -85%;
-        padding: 20px;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-
-    .menu-content {
-        padding: 20px 0;
-    }
-
-    .menu-content ul {
-        margin-bottom: 30px;
-    }
-
-    .menu-content ul li {
-        margin: 15px 0;
-    }
-
-    .menu-content ul li a {
-        font-size: 18px;
-        padding: 12px 0;
-        display: block;
-    }
-
-    .social-icons {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .social-icons a {
-        font-size: 24px;
-        padding: 10px;
-    }
-
-    .hamburger-menu {
-        width: 30px;
-        height: 25px;
-        position: relative;
-        cursor: pointer;
-        z-index: 1000;
-    }
-
-    .hamburger-menu span {
-        display: block;
-        position: absolute;
-        height: 3px;
-        width: 100%;
-        background-color: var(--text-color);
-        border-radius: 3px;
-        transition: all 0.3s ease;
-    }
-
-    .hamburger-menu span:nth-child(1) { top: 0; }
-    .hamburger-menu span:nth-child(2) { top: 11px; }
-    .hamburger-menu span:nth-child(3) { top: 22px; }
-
-    .hamburger-menu.active span:nth-child(1) {
-        transform: rotate(45deg);
-        top: 11px;
-    }
-
-    .hamburger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .hamburger-menu.active span:nth-child(3) {
-        transform: rotate(-45deg);
-        top: 11px;
-    }
-}
-
-/* Mobile Content Optimizations */
-@media (max-width: 768px) {
-    .profile-container {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-        margin-top: 20px;
-    }
-
-    .image-container {
-        width: 150px;
-        height: 150px;
-        margin: 0 auto 20px;
-    }
-
-    .information {
-        margin-left: 0;
-    }
-
-    .name {
-        font-size: 24px;
-        margin-bottom: 10px;
-    }
-
-    .title {
         font-size: 16px;
-        margin-bottom: 15px;
-    }
-
-    .tags {
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .tags span {
-        padding: 6px 12px;
-        font-size: 14px;
-    }
-
-    .content-section {
-        padding: 20px;
-    }
-
-    .tab-buttons {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .tab-button {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    .tab-content {
-        padding: 20px 0;
-    }
-
-    .tab-panel p {
-        font-size: 16px;
-        line-height: 1.6;
-    }
-
-    .skills-grid,
-    .projects-grid,
-    .interests-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .skill-category,
-    .project-card,
-    .interest-item {
-        padding: 20px;
-    }
-
-    .contact-form {
-        padding: 20px;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        padding: 12px;
-        font-size: 16px;
-    }
-
-    .submit-btn {
-        width: 100%;
-        padding: 14px;
-        font-size: 16px;
-    }
-}
-
-/* Small Mobile Optimizations */
-@media (max-width: 480px) {
-    .profile-container {
-        margin-top: 40px;
-    }
-
-    .image-container {
-        width: 120px;
-        height: 120px;
-    }
-
-    .name {
-        font-size: 22px;
-    }
-
-    .title {
-        font-size: 15px;
-    }
-
-    .content-section,
-    .skills-section,
-    .projects-section,
-    .volunteer-section,
-    .interests-section,
-    .contact-section {
-        padding: 15px;
-    }
-
-    .timeline-content {
-        padding: 15px;
-    }
-
-    .timeline-marker {
-        width: 12px;
-        height: 12px;
-    }
-
-    .interest-item {
-        padding: 15px;
-    }
-
-    .interest-item i {
-        font-size: 24px;
-    }
-
-    .interest-item h3 {
-        font-size: 18px;
-    }
-
-    .interest-item p {
-        font-size: 14px;
+        /* Prevent iOS zoom on focus */
     }
 }

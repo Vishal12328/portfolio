@@ -1,203 +1,179 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function() {
     // Elements
-    const elements = {
-        cursor: document.querySelector('.cursor'),
-        hamburgerMenu: document.getElementById('hamburgerMenu'),
-        offscreenMenu: document.getElementById('offscreenMenu'),
-        pageContainer: document.querySelector('.page-container'),
-        tabButtons: document.querySelectorAll('.tab-button'),
-        contactForm: document.getElementById('contactForm'),
-        scrollToTopBtn: document.createElement('div'),
-        themeToggle: document.createElement('div')
-    };
+    const cursor = document.querySelector('.cursor');
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const offscreenMenu = document.getElementById('offscreenMenu');
+    const pageContainer = document.querySelector('.page-container');
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const contactForm = document.getElementById('contactForm');
+    const scrollToTopBtn = document.createElement('div');
+    const themeToggle = document.createElement('div');
 
-    // Constants
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const animationDuration = prefersReducedMotion.matches ? '0s' : '0.3s';
+    // Add scroll to top button
+    scrollToTopBtn.className = 'scroll-to-top';
+    scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+    document.body.appendChild(scrollToTopBtn);
 
-    // Initialize UI Elements
-    const initUI = () => {
-        elements.scrollToTopBtn.className = 'scroll-to-top';
-        elements.scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        document.body.appendChild(elements.scrollToTopBtn);
+    // Add theme toggle button
+    themeToggle.className = 'theme-toggle';
+    themeToggle.innerHTML = '<i class="fas fa-moon"></i><i class="fas fa-sun"></i>';
+    document.body.appendChild(themeToggle);
 
-        elements.themeToggle.className = 'theme-toggle';
-        elements.themeToggle.innerHTML = '<i class="fas fa-moon"></i><i class="fas fa-sun"></i>';
-        document.body.appendChild(elements.themeToggle);
-    };
-
-    // Theme Management
-    const themeManager = {
-        setTheme(isLight) {
-            document.body.classList.toggle('light-theme', isLight);
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        },
-        init() {
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'light') this.setTheme(true);
-            elements.themeToggle.addEventListener('click', () => this.setTheme(!document.body.classList.contains('light-theme')));
+    // Theme handling
+    const setTheme = (isLight) => {
+        if (isLight) {
+            document.body.classList.add('light-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.body.classList.remove('light-theme');
+            localStorage.setItem('theme', 'dark');
         }
     };
 
-    // Cursor Management
-    const cursorManager = {
-        init() {
-            document.addEventListener('mousemove', e => {
-                const isInteractive = e.target.closest('a, button, .hamburger-menu, .image-container');
-                elements.cursor.style.transform = `translate(-50%, -50%) scale(${isInteractive ? 1.5 : 1})`;
-                elements.cursor.style.left = `${e.clientX}px`;
-                elements.cursor.style.top = `${e.clientY}px`;
-            });
-            document.addEventListener('mouseout', () => elements.cursor.style.opacity = '0');
-            document.addEventListener('mouseover', () => elements.cursor.style.opacity = '1');
-        }
-    };
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        setTheme(true);
+    }
 
-    // Menu Management
-    const menuManager = {
-        toggle() {
-            elements.hamburgerMenu.classList.toggle('active');
-            elements.offscreenMenu.classList.toggle('active');
-            elements.pageContainer.classList.toggle('menu-open');
-            if (isMobile) document.body.style.overflow = elements.offscreenMenu.classList.contains('active') ? 'hidden' : '';
-        },
-        init() {
-            elements.hamburgerMenu.addEventListener('click', () => this.toggle());
-            document.querySelectorAll('.offscreen-menu a').forEach(link => {
-                link.addEventListener('click', e => {
-                    e.preventDefault();
-                    const sectionId = link.getAttribute('data-section');
-                    if (!sectionId) return;
-                    this.toggle();
-                    setTimeout(() => this.scrollToSection(sectionId), 300);
-                });
+    // Theme toggle functionality
+    themeToggle.addEventListener('click', () => {
+        const isLight = document.body.classList.contains('light-theme');
+        setTheme(!isLight);
+    });
+
+    // Custom cursor
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        cursor.style.transform = e.target.closest('a, button, .hamburger-menu, .image-container') ?
+            'translate(-50%, -50%) scale(1.5)' :
+            'translate(-50%, -50%) scale(1)';
+    });
+
+    // Hide/show cursor
+    document.addEventListener('mouseout', () => cursor.style.opacity = '0');
+    document.addEventListener('mouseover', () => cursor.style.opacity = '1');
+
+    // Toggle menu
+    hamburgerMenu.addEventListener('click', () => {
+        hamburgerMenu.classList.toggle('active');
+        offscreenMenu.classList.toggle('active');
+        pageContainer.classList.toggle('menu-open');
+
+        // Animation delay for menu items
+        if (offscreenMenu.classList.contains('active')) {
+            document.querySelectorAll('.offscreen-menu ul li').forEach((item, index) => {
+                item.style.setProperty('--i', index);
             });
-        },
-        scrollToSection(sectionId) {
+        }
+    });
+
+    // Menu link handling with smooth scroll
+    document.querySelectorAll('.offscreen-menu a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const sectionId = link.getAttribute('data-section');
+            if (!sectionId) return;
+
             const section = document.getElementById(sectionId);
+
+            // Close menu
+            hamburgerMenu.classList.remove('active');
+            offscreenMenu.classList.remove('active');
+            pageContainer.classList.remove('menu-open');
+
             if (section) {
-                const navHeight = document.querySelector('nav').offsetHeight;
-                window.scrollTo({
-                    top: section.offsetTop - navHeight - 20,
-                    behavior: 'smooth'
-                });
+                // Add a small delay to allow menu closing animation to complete
+                setTimeout(() => {
+                    const navHeight = document.querySelector('nav').offsetHeight;
+                    const sectionTop = section.offsetTop - navHeight - 20; // Added extra padding
+
+                    window.scrollTo({
+                        top: sectionTop,
+                        behavior: 'smooth'
+                    });
+                }, 300);
             }
+        });
+    });
+
+    // Tab switching
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+            button.classList.add('active');
+            document.getElementById(button.getAttribute('data-tab')).classList.add('active');
+        });
+    });
+
+    // Form submission
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(contactForm);
+            const name = formData.get('name');
+
+            // Show submission confirmation
+            contactForm.innerHTML = `
+                <div class="success-message">
+                    <h3>Thank you, ${name}!</h3>
+                    <p>Your message has been received. I'll get back to you soon.</p>
+                </div>
+            `;
+        });
+    }
+
+    // Initialize first tab as active
+    if (tabButtons.length > 0) {
+        tabButtons[0].click();
+    }
+
+    // Animate skill progress bars
+    const skillProgressBars = document.querySelectorAll('.skill-progress');
+    const animateSkills = () => {
+        skillProgressBars.forEach(bar => {
+            const progress = bar.getAttribute('data-progress');
+            bar.style.width = progress;
+        });
+    };
+
+    // Intersection Observer for skill animation
+    const skillsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateSkills();
+                skillsObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+
+    const skillsSection = document.querySelector('.skills-section');
+    if (skillsSection) {
+        skillsObserver.observe(skillsSection);
+    }
+
+    // Scroll to top functionality
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
         }
-    };
+    });
 
-    // Tab Management
-    const tabManager = {
-        init() {
-            elements.tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    elements.tabButtons.forEach(btn => btn.classList.remove('active'));
-                    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
-                    button.classList.add('active');
-                    document.getElementById(button.getAttribute('data-tab')).classList.add('active');
-                });
-            });
-            if (elements.tabButtons.length) elements.tabButtons[0].click();
-        }
-    };
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 
-    // Form Management
-    const formManager = {
-        init() {
-            if (!elements.contactForm) return;
-            elements.contactForm.addEventListener('submit', e => {
-                e.preventDefault();
-                const formData = new FormData(elements.contactForm);
-                const name = formData.get('name');
-                elements.contactForm.innerHTML = `
-                    <div class="success-message">
-                        <h3>Thank you, ${name}!</h3>
-                        <p>Your message has been received. I'll get back to you soon.</p>
-                    </div>
-                `;
-            });
-        }
-    };
-
-    // Skills Animation
-    const skillsManager = {
-        init() {
-            const skillProgressBars = document.querySelectorAll('.skill-progress');
-            const skillsObserver = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        skillProgressBars.forEach(bar => {
-                            bar.style.width = bar.getAttribute('data-progress');
-                        });
-                        skillsObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            const skillsSection = document.querySelector('.skills-section');
-            if (skillsSection) skillsObserver.observe(skillsSection);
-        }
-    };
-
-    // Scroll Management
-    const scrollManager = {
-        init() {
-            window.addEventListener('scroll', () => {
-                elements.scrollToTopBtn.classList.toggle('visible', window.pageYOffset > 300);
-            });
-            elements.scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-        }
-    };
-
-    // Mobile Optimizations
-    const mobileManager = {
-        init() {
-            if (!isMobile) return;
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', e => {
-                    e.preventDefault();
-                    const target = document.querySelector(anchor.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        if (elements.offscreenMenu.classList.contains('active')) menuManager.toggle();
-                    }
-                });
-            });
-
-            let touchStartX = 0;
-            document.addEventListener('touchstart', e => touchStartX = e.changedTouches[0].screenX);
-            document.addEventListener('touchend', e => {
-                const swipeDistance = e.changedTouches[0].screenX - touchStartX;
-                if (Math.abs(swipeDistance) > 50) {
-                    if (swipeDistance > 0 && elements.offscreenMenu.classList.contains('active')) {
-                        menuManager.toggle();
-                    } else if (swipeDistance < 0 && !elements.offscreenMenu.classList.contains('active')) {
-                        menuManager.toggle();
-                    }
-                }
-            });
-
-            window.addEventListener('orientationchange', () => {
-                if (elements.offscreenMenu.classList.contains('active')) menuManager.toggle();
-            });
-        }
-    };
-
-    // Initialize all managers
-    const init = () => {
-        initUI();
-        themeManager.init();
-        cursorManager.init();
-        menuManager.init();
-        tabManager.init();
-        formManager.init();
-        skillsManager.init();
-        scrollManager.init();
-        mobileManager.init();
-        document.documentElement.style.setProperty('--transition-speed', animationDuration);
-        document.body.classList.add('loaded');
-    };
-
-    init();
+    // Add loading animation
+    document.body.classList.add('loaded');
 });
